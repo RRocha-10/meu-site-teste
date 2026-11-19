@@ -1,5 +1,398 @@
 <!DOCTYPE html>
-<html>
-  <head><title>Meu site de teste</title></head>
-  <body><h1>Funcionou no Render!</h1></body>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Deborah &amp; Rafael, 8 anos</title>
+<meta name="theme-color" content="#3a1e2e">
+<meta name="description" content="Oito anos de casamento">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Ctext x='32' y='48' font-size='52' text-anchor='middle' fill='%235a2a43'%3E%E2%88%9E%3C/text%3E%3C/svg%3E">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,600;1,400;1,600&family=Pinyon+Script&display=swap" rel="stylesheet">
+<style>
+:root{--ameixa:#3a1e2e;--vinho:#5a2a43;--rose:#d4a1a1;--ouro:#c9a45f;--bronze:#86602a;--papel:#f6ece7;--folha:#fffaf6;--tinta:#2c1b24}
+*{box-sizing:border-box;margin:0}
+html{scroll-behavior:smooth}
+body{font:21px/1.65 "Cormorant Garamond",Georgia,serif;color:var(--tinta);background:var(--papel) url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='160' height='160'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.8' numOctaves='2'/%3E%3CfeColorMatrix values='0 0 0 0 .35 0 0 0 0 .2 0 0 0 0 .25 0 0 0 .08 0'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E")}
+:focus-visible{outline:2px solid var(--ouro);outline-offset:3px}
+
+/* capa */
+.capa{min-height:100svh;display:grid;place-items:center;text-align:center;color:#fff;padding:4rem 1.5rem;background:radial-gradient(ellipse at 50% 30%,var(--vinho),var(--ameixa) 70%)}
+.capa.com-foto{background:linear-gradient(rgba(58,30,46,.5),rgba(58,30,46,.85)),var(--capa) center/cover}
+.capa .oito{font-style:italic;font-size:1.4rem;color:var(--rose)}
+.nomes{font:400 clamp(3.6rem,14vw,8.5rem)/1.05 "Pinyon Script",cursive;margin:.5rem 0 1rem}
+.relogio{display:flex;flex-wrap:wrap;gap:1.2rem 2rem;justify-content:center;margin-top:2.6rem}
+.relogio b{display:block;font-size:2.5rem;line-height:1.1;font-weight:600;color:var(--ouro);font-variant-numeric:tabular-nums}
+.relogio span{font-style:italic;font-size:1rem;opacity:.8}
+@media (prefers-reduced-motion:no-preference){.capa>div{animation:surge 1.8s ease-out both}@keyframes surge{from{opacity:0;transform:translateY(14px)}}}
+
+/* seções */
+section{padding:5.5rem 1.25rem}
+.caixa{max-width:960px;margin:0 auto}
+h2{font-style:italic;font-weight:600;font-size:clamp(2rem,6vw,2.9rem);line-height:1.15;text-align:center;color:var(--vinho);margin-bottom:3rem}
+h2::after{content:"";display:block;height:16px;margin:.7rem auto 0;background:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='90' height='16'%3E%3Cpath d='M2 8Q22 -2 45 8T88 8' fill='none' stroke='%23c9a45f' stroke-width='1.5'/%3E%3C/svg%3E") center no-repeat}
+.escuro{background:var(--ameixa);color:#f3e4de}
+.escuro h2{color:var(--rose)}
+
+/* carta */
+.carta{color:var(--tinta);max-width:640px;margin:0 auto;padding:3rem 2.5rem 2.5rem;background:var(--folha);transform:rotate(-.5deg);box-shadow:0 1px 2px rgba(58,30,46,.2),0 18px 36px -18px rgba(58,30,46,.45)}
+.carta p{margin-bottom:1.1rem}
+.carta .abre{font-style:italic;font-size:1.35rem}
+.carta .amo{font-style:italic;font-size:1.35rem;color:var(--vinho)}
+.carta .assina{font:400 2.6rem/1 "Pinyon Script",cursive;color:var(--vinho);text-align:right;margin:1.5rem 0 0}
+
+/* linha do tempo */
+.tempo{position:relative;max-width:780px;margin:0 auto;list-style:none;padding:0}
+.tempo::before{content:"";position:absolute;left:50%;top:.5rem;bottom:0;border-left:1px dashed var(--ouro)}
+.tempo li{position:relative;width:50%;padding:0 2.6rem 2.6rem 0;text-align:right}
+.tempo li:nth-child(even){margin-left:50%;padding:0 0 2.6rem 2.6rem;text-align:left}
+.tempo li::after{content:"";position:absolute;top:.55rem;right:-.45rem;width:.9rem;height:.9rem;border-radius:50%;background:var(--rose);box-shadow:0 0 0 5px var(--papel)}
+.tempo li:nth-child(even)::after{right:auto;left:-.45rem}
+.tempo time{font-style:italic;color:var(--bronze)}
+.tempo h3{font-size:1.55rem;line-height:1.2;color:var(--vinho);font-weight:600}
+@media (max-width:640px){
+ .tempo::before{left:.45rem}
+ .tempo li,.tempo li:nth-child(even){width:100%;margin-left:0;padding:0 0 2.2rem 2.2rem;text-align:left}
+ .tempo li::after,.tempo li:nth-child(even)::after{left:0;right:auto}
+}
+
+/* post de fotos */
+.post{max-width:470px;margin:0 auto;background:var(--folha);border-radius:4px;overflow:hidden;box-shadow:0 1px 2px rgba(58,30,46,.2),0 18px 36px -18px rgba(58,30,46,.45)}
+.post-topo{display:flex;align-items:center;gap:.8rem;padding:.8rem 1rem}
+.post-topo b{display:block;line-height:1.2}
+.post-topo small{color:var(--bronze);font-style:italic}
+.avatar{width:44px;height:44px;border-radius:50%;padding:2px;background:conic-gradient(var(--ouro),var(--rose),var(--vinho),var(--ouro))}
+.avatar i{display:grid;place-items:center;width:100%;height:100%;border-radius:50%;background:var(--folha);color:var(--vinho);font-style:normal;font-size:1.5rem}
+.palco{position:relative;background:#e9d9d3}
+.slides{display:flex;overflow-x:auto;scroll-snap-type:x mandatory;scrollbar-width:none}
+.slides::-webkit-scrollbar{display:none}
+.slides img{flex:0 0 100%;width:100%;aspect-ratio:4/5;object-fit:cover;display:block;scroll-snap-align:center;user-select:none}
+.contagem{position:absolute;top:.7rem;right:.7rem;padding:.05rem .65rem;border-radius:999px;background:rgba(30,12,22,.62);color:#fff;font-size:.95rem}
+.seta{position:absolute;top:50%;translate:0 -50%;width:2.3rem;height:2.3rem;border:0;border-radius:50%;background:rgba(255,250,246,.88);color:var(--vinho);font:1.6rem/1 "Cormorant Garamond",serif;cursor:pointer;padding-bottom:.2rem}
+#ant{left:.6rem}#prox{right:.6rem}
+@media (hover:none){.seta{display:none}}
+.pop{position:absolute;inset:0;margin:auto;width:96px;height:96px;fill:#fff;opacity:0;pointer-events:none;filter:drop-shadow(0 2px 8px rgba(0,0,0,.35))}
+@media (prefers-reduced-motion:no-preference){.pop.vai{animation:estoura .85s ease-out}@keyframes estoura{0%{opacity:0;transform:scale(.4)}20%{opacity:.95;transform:scale(1.1)}60%{opacity:.95;transform:scale(1)}100%{opacity:0;transform:scale(1.2)}}}
+.pontos{display:flex;gap:.35rem;justify-content:center;padding:.8rem 0 .1rem}
+.pontos span{width:.42rem;height:.42rem;border-radius:50%;background:#d8c3bc}
+.pontos .on{background:var(--vinho)}
+.acoes{padding:.2rem .85rem 0}
+.cora{background:none;border:0;padding:.3rem;cursor:pointer;color:var(--tinta)}
+.cora svg{display:block;width:28px;height:28px;fill:none;stroke:currentColor;stroke-width:1.8;stroke-linejoin:round;transition:transform .2s}
+.cora.on{color:#b84a5e}
+.cora.on svg{fill:currentColor}
+.cora:active svg{transform:scale(1.25)}
+.texto{padding:0 1rem 1.2rem;line-height:1.45}
+.texto p+p{margin-top:.3rem}
+
+footer{background:var(--ameixa);color:#f3e4de;text-align:center;padding:4rem 1.5rem 3rem}
+footer .fecho{font:400 clamp(2.4rem,8vw,3.6rem)/1.1 "Pinyon Script",cursive;color:var(--rose)}
+footer p+p{margin-top:.8rem;opacity:.75}
+
+/* 8 até o infinito */
+.infinito{text-align:center;padding:4rem 1.25rem 0}
+.inf{background:none;border:0;cursor:pointer;font:600 9rem/1 "Cormorant Garamond",serif;color:var(--vinho);padding:.1em .2em;transition:transform .9s ease}
+.inf.gira{transform:rotate(90deg)}
+.infinito p{font-style:italic;font-size:1.6rem;color:var(--vinho)}
+.infinito .dica{font-size:1.05rem;color:var(--bronze);margin-top:.3rem}
+@media (prefers-reduced-motion:reduce){.inf,.egg svg{transition:none}}
+
+/* coisas que a gente ama */
+.achados{display:grid;grid-template-columns:repeat(5,1fr);gap:1.8rem 1rem;max-width:800px;margin:0 auto}
+@media (max-width:640px){.achados{grid-template-columns:repeat(2,1fr)}}
+.egg{text-align:center;color:var(--vinho)}
+.egg svg{width:60px;height:60px;fill:none;stroke:currentColor;stroke-width:1.6;stroke-linecap:round;stroke-linejoin:round;transition:transform .25s,color .25s}
+.egg svg .cheio{fill:currentColor;stroke:none}
+.egg:hover svg{transform:translateY(-4px) rotate(-4deg);color:var(--bronze)}
+.egg span{display:block;margin-top:.5rem;font-style:italic;font-size:1.05rem;line-height:1.25}
+
+/* mapa */
+.mapa{display:block;width:100%;max-width:900px;margin:0 auto}
+.terra{fill:#dfc2b9;stroke:#cdaa9f;stroke-width:.3;stroke-linejoin:round}
+.ponto .miolo{fill:var(--vinho)}
+.ponto .anel{fill:none;stroke:var(--vinho);stroke-width:.5;transform-box:fill-box;transform-origin:center}
+.ponto.sonho .miolo{fill:var(--papel);stroke:var(--vinho);stroke-width:.6}
+@media (prefers-reduced-motion:no-preference){.ponto .anel{animation:onda 2.8s ease-out infinite}@keyframes onda{from{transform:scale(1);opacity:.9}to{transform:scale(3.2);opacity:0}}}
+.paises{list-style:none;padding:0;margin:1.8rem auto 0;display:flex;flex-wrap:wrap;gap:.6rem 1.8rem;justify-content:center;max-width:780px}
+.paises li{display:flex;align-items:center;gap:.5rem;font-style:italic}
+.bolinha{width:.7rem;height:.7rem;border-radius:50%;background:var(--vinho)}
+.paises .sonho .bolinha{background:none;border:1.5px solid var(--vinho)}
+</style>
+</head>
+<body>
+
+<header class="capa" id="capa">
+  <div>
+    <p class="oito">oito anos de casamento</p>
+    <h1 class="nomes" id="nomes"></h1>
+    <div class="relogio" role="timer" aria-label="Tempo de casados">
+      <div><b id="r0"></b><span>dias</span></div>
+      <div><b id="r1"></b><span>horas</span></div>
+      <div><b id="r2"></b><span>minutos</span></div>
+      <div><b id="r3"></b><span>segundos</span></div>
+    </div>
+  </div>
+</header>
+
+<section class="infinito">
+  <button class="inf" id="inf" type="button" aria-label="Oito anos até o infinito. Toque para girar o oito.">8</button>
+  <p>anos até o infinito</p>
+  <p class="dica" id="dica">toque no 8</p>
+</section>
+
+<section class="escuro">
+  <div class="caixa">
+    <h2>Uma carta para você</h2>
+    <article class="carta">
+      <p class="abre">Mais um ano juntos, amorzinho.</p>
+      <p>Obrigado por tudo, por sempre me ajudar a melhorar, por sempre estar ao meu lado e crescer junto comigo.</p>
+      <p>Todas as coisas que conquistamos não seriam tão especiais se não fosse com você ao meu lado.</p>
+      <p class="amo">Te amo cada dia mais.</p>
+      <p>Posso não agradecer tanto quanto deveria, mas queria agradecer por ter paciência com minhas chatices, por me buscar no trabalho de quinta, por me ajudar a comentar nas partes, por fazer comida pra gente 😍, passar minhas roupas, por me ajudar a pagar as contas, por me incentivar a ir na academia, por me ajudar a comer melhor, e por muito mais.</p>
+      <p class="assina" id="assina"></p>
+    </article>
+  </div>
+</section>
+
+<section id="sec-tempo">
+  <div class="caixa">
+    <h2>O nosso último ano</h2>
+    <ol class="tempo" id="tempo"></ol>
+  </div>
+</section>
+
+<section id="sec-fotos">
+  <div class="caixa">
+    <h2>Um pouco do nosso ano</h2>
+    <article class="post">
+      <header class="post-topo">
+        <span class="avatar" aria-hidden="true"><i>∞</i></span>
+        <div><b id="post-nome"></b><small>oito anos juntos</small></div>
+      </header>
+      <div class="palco">
+        <div class="slides" id="slides" tabindex="0" aria-label="Fotos do nosso ano. Deslize para o lado."></div>
+        <span class="contagem" id="contagem"></span>
+        <button class="seta" id="ant" type="button" aria-label="Foto anterior">‹</button>
+        <button class="seta" id="prox" type="button" aria-label="Próxima foto">›</button>
+        <svg class="pop" id="pop" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 21C5 16.5 2.5 12.8 2.5 9A5 5 0 0 1 12 6.8 5 5 0 0 1 21.5 9c0 3.8-2.5 7.5-9.5 12z"/></svg>
+      </div>
+      <div class="pontos" id="pontos"></div>
+      <div class="acoes">
+        <button class="cora" id="cora" type="button" aria-label="Curtir" aria-pressed="false"><svg viewBox="0 0 24 24"><path d="M12 21C5 16.5 2.5 12.8 2.5 9A5 5 0 0 1 12 6.8 5 5 0 0 1 21.5 9c0 3.8-2.5 7.5-9.5 12z"/></svg></button>
+      </div>
+      <div class="texto"><p id="curtido"></p><p id="legenda"></p></div>
+    </article>
+  </div>
+</section>
+
+<section>
+  <div class="caixa">
+    <h2>Nosso mapa</h2>
+    <svg class="mapa" id="mapa" viewBox="0 4 360 146" role="img" aria-label="Mapa-múndi com os países marcados"></svg>
+    <ul class="paises" id="paises"></ul>
+  </div>
+</section>
+
+<section>
+  <div class="caixa">
+    <h2>Coisas que a gente ama</h2>
+    <div class="achados" id="achados"></div>
+  </div>
+</section>
+
+<footer>
+  <p class="fecho">Com todo o meu amor</p>
+  <p>Deborah Rocha</p>
+  <p>19 de novembro de 2026</p>
+</footer>
+
+
+<script>
+// ===== EDITE AQUI =====
+const NOME1 = "Deborah";
+const NOME2 = "Rafael";
+const DATA_CASAMENTO = "2018-11-19";   // AAAA-MM-DD
+const ASSINATURA = "Rafael";           // quem assina a carta
+// Fotos ficam na pasta "fotos". Opcional: fotos/capa.jpg vira o fundo do topo.
+const LEGENDA_POST = "Um pouco do nosso último ano 🤍";
+const FOTOS = [   // pos (opcional) ajusta o enquadramento da foto
+  {arq: "foto1.jpg", alt: "Casal em frente à Casa Rosada, em Buenos Aires"},
+  {arq: "foto2.jpg", alt: "Selfie no estádio, antes do jogo", pos: "38% 50%"},
+  {arq: "foto3.jpg", alt: "Casal numa praia de rochas ao entardecer"},
+  {arq: "foto4.jpg", alt: "Casal de óculos escuros em frente a um jardim"},
+  {arq: "foto5.jpg", alt: "Casal à beira de um rio"},
+  {arq: "foto6.jpg", alt: "Selfie dentro de um bar com luz baixa"},
+  {arq: "foto7.jpg", alt: "Foto na porta de um vagão de metrô antigo"},
+  {arq: "foto8.jpg", alt: "Selfie em uma fábrica"}
+];
+// Linha do tempo (opcional): enquanto estiver vazia, a seção fica escondida.
+// Para ativar, apague as barras // das linhas abaixo e troque os textos.
+const TEMPO = [
+  // {data: "Dezembro de 2025", titulo: "Título do momento", texto: "Conte em duas linhas o que aconteceu."},
+  // {data: "Março de 2026", titulo: "Título do momento", texto: "Conte em duas linhas o que aconteceu."}
+];
+const LUGARES = [   // coloque sonho: true para marcar um lugar que ainda é sonho
+  {nome: "Itália", lon: 12.5, lat: 42},
+  {nome: "Argentina", lon: -64, lat: -36},
+  {nome: "Chile", lon: -71, lat: -33},
+  {nome: "Paraguai", lon: -58, lat: -23},
+  {nome: "Inglaterra", lon: -1.5, lat: 52.5},
+  {nome: "França", lon: 2.5, lat: 46.5},
+  {nome: "Holanda", lon: 5, lat: 52}
+];
+const ACHADOS = [
+  {nome: "Viajar", svg: `<path d="M44 6L4 22l14 6 6 14zM18 28L44 6"/>`},
+  {nome: "Morumbi", svg: `<ellipse cx="24" cy="24" rx="20" ry="14"/><ellipse cx="24" cy="24" rx="15" ry="9.5"/><rect x="15" y="19.5" width="18" height="9"/><path d="M24 19.5v9"/>`},
+  {nome: "Friends", svg: `<path d="M8 22v-6a4 4 0 0 1 4-4h24a4 4 0 0 1 4 4v6M4 26a4 4 0 0 1 8 0v4h24v-4a4 4 0 0 1 8 0v10H4zM10 40v3M38 40v3"/>`},
+  {nome: "Cinema", svg: `<rect x="6" y="20" width="36" height="22" rx="2"/><path d="M6 20l4-10 28-5 4 7M14 8l5 7M24 6l5 7M34 4l5 7M6 26h36"/>`},
+  {nome: "Funky Black Cat", svg: `<path class="cheio" d="M10 44V12l9 9h10l9-9v32c0 3-7 3-14 3s-14 0-14-3z"/><circle cx="19" cy="32" r="2.2" fill="#c9a45f" stroke="none"/><circle cx="29" cy="32" r="2.2" fill="#c9a45f" stroke="none"/>`},
+  {nome: "Tênis", svg: `<path d="M4 34h40v5H4zM6 34V22l8-2 4-9 7 3 7 3c6 2 10 6 12 11v2M19 17l5 3M23 20l4 3"/>`},
+  {nome: "Tecnologia", svg: `<rect x="9" y="10" width="30" height="23" rx="2"/><path d="M4 37h40v1a3 3 0 0 1-3 3H7a3 3 0 0 1-3-3zM20 17l-5 4.5 5 4.5M28 17l5 4.5-5 4.5"/>`},
+  {nome: "Fones", svg: `<path d="M8 30v-6a16 16 0 0 1 32 0v6"/><rect x="6" y="28" width="7" height="12" rx="3"/><rect x="35" y="28" width="7" height="12" rx="3"/>`},
+  {nome: "Vinho", svg: `<path d="M16 6h16c0 11-2 17-8 18-6-1-8-7-8-18zM24 24v18M16 42h16M17.5 14h13"/>`},
+  {nome: "Obra", svg: `<path d="M8 40L31 17M40.8 21.2L35.2 26.8L21.2 12.8L26.8 7.2zM14 14L28 28M12 16L16 12M31 27L43 39L39 43L27 31z"/>`}
+];
+// ======================
+
+const $ = id => document.getElementById(id);
+function el(tag, texto, pai, classe) {
+  const e = document.createElement(tag);
+  if (texto) e.textContent = texto;
+  if (classe) e.className = classe;
+  if (pai) pai.appendChild(e);
+  return e;
+}
+
+document.title = NOME1 + " & " + NOME2 + ", 8 anos";
+$("nomes").textContent = NOME1 + " & " + NOME2;
+$("assina").textContent = ASSINATURA;
+
+const ini = new Date(DATA_CASAMENTO + "T00:00:00");
+function tic() {
+  let s = Math.floor((Date.now() - ini) / 1000);
+  const d = Math.floor(s / 86400); s %= 86400;
+  const h = Math.floor(s / 3600); s %= 3600;
+  const m = Math.floor(s / 60); s %= 60;
+  [d, h, m, s].forEach((v, i) => {
+    $("r" + i).textContent = i ? String(v).padStart(2, "0") : v.toLocaleString("pt-BR");
+  });
+}
+tic(); setInterval(tic, 1000);
+
+// foto de capa (opcional)
+const capa = new Image();
+capa.onload = () => {
+  $("capa").style.setProperty("--capa", "url(fotos/capa.jpg)");
+  $("capa").classList.add("com-foto");
+};
+capa.src = "fotos/capa.jpg";
+
+TEMPO.forEach(t => {
+  const li = el("li", "", $("tempo"));
+  el("time", t.data, li);
+  el("h3", t.titulo, li);
+  el("p", t.texto, li);
+});
+
+$("sec-tempo").hidden = !TEMPO.length;
+
+// post de fotos (carrossel)
+const slides = $("slides"), pontos = $("pontos"), cora = $("cora"), pop = $("pop");
+$("post-nome").textContent = NOME1 + " & " + NOME2;
+const cur = $("curtido");
+cur.append("Curtido por "); el("b", NOME1, cur); cur.append(" e "); el("b", NOME2, cur);
+const leg = $("legenda");
+el("b", NOME1 + " & " + NOME2, leg); leg.append(" " + LEGENDA_POST);
+
+let faltam = FOTOS.length;
+function pronto() {
+  if (--faltam) return;
+  const n = slides.children.length;
+  if (!n) { $("sec-fotos").hidden = true; return; }
+  $("contagem").textContent = "1/" + n;
+  for (let i = 0; i < n; i++) el("span", "", pontos, i ? "" : "on");
+}
+FOTOS.forEach(f => {
+  const img = new Image();
+  img.src = "fotos/" + f.arq;
+  img.alt = f.alt || "Foto do casal";
+  img.draggable = false;
+  if (f.pos) img.style.objectPosition = f.pos;
+  img.onload = pronto;
+  img.onerror = () => { img.remove(); pronto(); };   // some se o arquivo não existir
+  slides.appendChild(img);
+});
+if (!FOTOS.length) $("sec-fotos").hidden = true;
+
+slides.addEventListener("scroll", () => {
+  const i = Math.round(slides.scrollLeft / slides.clientWidth);
+  [...pontos.children].forEach((d, k) => d.classList.toggle("on", k === i));
+  $("contagem").textContent = (i + 1) + "/" + slides.children.length;
+});
+$("ant").onclick = () => slides.scrollBy({left: -slides.clientWidth, behavior: "smooth"});
+$("prox").onclick = () => slides.scrollBy({left: slides.clientWidth, behavior: "smooth"});
+
+function curtir(ligar) {
+  const on = ligar || !cora.classList.contains("on");
+  cora.classList.toggle("on", on);
+  cora.setAttribute("aria-pressed", on);
+}
+cora.onclick = () => curtir(false);
+slides.ondblclick = () => {         // toque duplo na foto também curte
+  curtir(true);
+  pop.classList.remove("vai"); void pop.getBoundingClientRect(); pop.classList.add("vai");
+};
+
+// 8 até o infinito
+const inf = $("inf"), dica = $("dica");
+inf.onclick = () => {
+  const g = inf.classList.toggle("gira");
+  dica.textContent = g ? "e ainda temos muito para viver" : "toque no 8";
+};
+
+// mapa-múndi (contornos bem simplificados: lon, lat, lon, lat...)
+const TERRA = [
+  [-166,68,-157,71,-141,70,-128,70,-115,68,-95,69,-90,73,-82,69,-80,63,-93,60,-94,58,-85,55,-79,52,-78,58,-70,59,-64,60,-60,55,-56,52,-65,48,-66,45,-70,42,-74,40,-76,35,-81,31,-80,26,-82,26,-84,30,-90,30,-94,29,-97,26,-97,21,-95,19,-91,19,-90,21,-87,21,-88,16,-84,15,-83,10,-80,9,-78,8,-80,7,-83,8,-86,11,-92,15,-97,16,-105,20,-110,24,-113,31,-117,32,-121,35,-124,40,-124,47,-128,51,-135,58,-145,60,-152,59,-158,56,-165,54,-160,59,-165,62],
+  [-77,8,-72,12,-62,11,-52,5,-50,0,-44,-2,-35,-5,-35,-9,-39,-14,-41,-22,-48,-26,-49,-29,-54,-34,-58,-35,-57,-38,-62,-39,-65,-42,-67,-46,-66,-48,-69,-52,-68,-55,-72,-54,-75,-50,-74,-43,-73,-37,-71,-30,-70,-18,-76,-14,-80,-6,-81,-2,-80,1,-77,4],
+  [-17,21,-13,28,-9,32,-6,36,10,37,11,33,20,31,32,31,34,28,37,22,43,12,51,12,45,2,40,-3,40,-10,40,-15,35,-24,33,-26,32,-29,26,-34,20,-35,17,-30,12,-17,13,-10,9,-1,9,4,4,6,-5,5,-8,4,-13,8,-17,14],
+  [-9,37,-9,43,-2,44,-4,48,2,51,5,53,8,54,9,57,11,58,8,58,5,59,5,62,10,64,14,68,20,70,28,71,40,68,45,68,60,70,70,73,80,73,100,77,113,74,130,72,150,71,170,70,180,68,180,65,172,62,163,60,156,52,150,59,143,59,135,54,141,52,140,48,133,43,129,40,127,35,126,38,122,40,121,37,119,34,122,30,120,25,114,22,109,21,106,19,108,12,105,9,100,13,100,8,104,1,100,3,98,8,98,16,94,17,92,22,87,21,80,15,77,8,73,16,72,21,67,24,57,25,56,27,50,30,48,29,51,25,56,24,59,22,55,17,45,13,43,13,39,21,35,28,34,31,36,35,30,36,27,37,26,40,22,40,23,36,21,38,19,42,13,45,12,44,16,41,16,38,15,40,12,42,9,44,6,43,3,43,0,39,-2,37,-6,36],
+  [-5,50,1,51,2,53,-1,55,-2,57,-5,58,-6,56,-3,54,-5,52],
+  [-10,52,-6,52,-6,55,-10,54],
+  [114,-22,122,-18,130,-12,136,-12,142,-11,146,-19,153,-26,150,-37,141,-38,135,-34,129,-32,115,-34],
+  [-55,60,-45,60,-20,70,-20,82,-40,83,-60,80,-70,77,-55,70]
+];
+const NS = "http://www.w3.org/2000/svg";
+function sv(tag, attrs, pai) {
+  const e = document.createElementNS(NS, tag);
+  for (const k in attrs) e.setAttribute(k, attrs[k]);
+  pai.appendChild(e);
+  return e;
+}
+const mapa = $("mapa");
+TERRA.forEach(t => {
+  const pts = [];
+  for (let i = 0; i < t.length; i += 2) pts.push((t[i] + 180) + "," + (90 - t[i + 1]));
+  sv("polygon", {points: pts.join(" "), "class": "terra"}, mapa);
+});
+LUGARES.forEach(l => {
+  const g = sv("g", {"class": "ponto" + (l.sonho ? " sonho" : "")}, mapa);
+  sv("title", {}, g).textContent = l.nome;
+  sv("circle", {cx: l.lon + 180, cy: 90 - l.lat, r: 2.6, "class": "anel"}, g);
+  sv("circle", {cx: l.lon + 180, cy: 90 - l.lat, r: 2.1, "class": "miolo"}, g);
+  const li = el("li", "", $("paises"), l.sonho ? "sonho" : "");
+  el("span", "", li, "bolinha");
+  li.appendChild(document.createTextNode(l.nome));
+});
+if (LUGARES.some(l => l.sonho)) el("li", "(ponto vazado: ainda é sonho)", $("paises"));
+
+// coisas que a gente ama
+ACHADOS.forEach(a => {
+  const d = el("div", "", $("achados"), "egg");
+  d.innerHTML = '<svg viewBox="0 0 48 48" aria-hidden="true">' + a.svg + '</svg>';
+  el("span", a.nome, d);
+});
+
+</script>
+</body>
 </html>
