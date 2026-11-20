@@ -18,13 +18,14 @@ body{font:21px/1.65 "Cormorant Garamond",Georgia,serif;color:var(--tinta);backgr
 :focus-visible{outline:2px solid var(--ouro);outline-offset:3px}
 
 /* capa */
-.capa{min-height:100svh;display:grid;place-items:center;text-align:center;color:#fff;padding:4rem 1.5rem;background:radial-gradient(ellipse at 50% 30%,var(--vinho),var(--ameixa) 70%)}
+.capa{position:relative;min-height:100svh;display:grid;place-items:center;text-align:center;color:#fff;padding:4rem 1.5rem;background:radial-gradient(ellipse at 50% 30%,var(--vinho),var(--ameixa) 70%)}
 .capa.com-foto{background:linear-gradient(rgba(58,30,46,.5),rgba(58,30,46,.85)),var(--capa) center/cover}
 .capa .oito{font-style:italic;font-size:1.4rem;color:var(--rose)}
 .nomes{font:400 clamp(3.6rem,14vw,8.5rem)/1.05 "Pinyon Script",cursive;margin:.5rem 0 1rem}
 .relogio{display:flex;flex-wrap:wrap;gap:1.2rem 2rem;justify-content:center;margin-top:2.6rem}
 .relogio b{display:block;font-size:2.5rem;line-height:1.1;font-weight:600;color:var(--ouro);font-variant-numeric:tabular-nums}
 .relogio span{font-style:italic;font-size:1rem;opacity:.8}
+.capa::after{content:"";position:absolute;left:50%;bottom:1.6rem;width:1px;height:3.2rem;background:linear-gradient(var(--ouro),transparent)}
 @media (prefers-reduced-motion:no-preference){.capa>div{animation:surge 1.8s ease-out both}@keyframes surge{from{opacity:0;transform:translateY(14px)}}}
 
 /* seções */
@@ -97,12 +98,15 @@ footer .fecho{font:400 clamp(2.4rem,8vw,3.6rem)/1.1 "Pinyon Script",cursive;colo
 footer p+p{margin-top:.8rem;opacity:.75}
 
 /* 8 até o infinito */
-.infinito{text-align:center;padding:4rem 1.25rem 0}
-.inf{background:none;border:0;cursor:pointer;font:600 9rem/1 "Cormorant Garamond",serif;color:var(--vinho);padding:.1em .2em;transition:transform .9s ease}
-.inf.gira{transform:rotate(90deg)}
-.infinito p{font-style:italic;font-size:1.6rem;color:var(--vinho)}
-.infinito .dica{font-size:1.05rem;color:var(--bronze);margin-top:.3rem}
-@media (prefers-reduced-motion:reduce){.inf,.egg svg{transition:none}}
+.infinito{text-align:center;padding:5rem 1.25rem}
+.inf{display:grid;place-items:center;margin:0 auto;width:min(62vw,13.5rem);aspect-ratio:1;border-radius:50%;border:1.5px solid var(--ouro);background:none;cursor:pointer;color:var(--vinho);box-shadow:0 0 0 6px var(--papel),0 0 0 7px rgba(201,164,95,.5);transition:background .3s}
+.inf:hover{background:rgba(201,164,95,.1)}
+.inf span{display:block;font:600 8.5rem/1 "Cormorant Garamond",serif;padding-bottom:.08em;transition:transform .9s ease}
+.inf.gira span{transform:rotate(90deg)}
+.infinito p{font-style:italic;font-size:1.7rem;line-height:1.2;color:var(--vinho);margin-top:2.2rem}
+.infinito .dica{font-size:1.1rem;color:var(--bronze);margin-top:.5rem}
+@media (prefers-reduced-motion:no-preference){.inf:not(.usado){animation:respira 3.2s ease-in-out infinite}@keyframes respira{0%,100%{box-shadow:0 0 0 6px var(--papel),0 0 0 7px rgba(201,164,95,.5)}50%{box-shadow:0 0 0 6px var(--papel),0 0 0 13px rgba(201,164,95,.14)}}}
+@media (prefers-reduced-motion:reduce){.inf,.inf span,.egg svg{transition:none}}
 
 /* coisas que a gente ama */
 .achados{display:grid;grid-template-columns:repeat(5,1fr);gap:1.8rem 1rem;max-width:800px;margin:0 auto}
@@ -142,7 +146,7 @@ footer p+p{margin-top:.8rem;opacity:.75}
 </header>
 
 <section class="infinito">
-  <button class="inf" id="inf" type="button" aria-label="Oito anos até o infinito. Toque para girar o oito.">8</button>
+  <button class="inf" id="inf" type="button" aria-label="Oito anos até o infinito. Toque para girar o oito."><span>8</span></button>
   <p>anos até o infinito</p>
   <p class="dica" id="dica">toque no 8</p>
 </section>
@@ -419,6 +423,7 @@ $("salvar").onclick = () => {
 const inf = $("inf"), dica = $("dica");
 inf.onclick = () => {
   const g = inf.classList.toggle("gira");
+  inf.classList.add("usado");
   dica.textContent = g ? "e ainda temos muito para viver" : "toque no 8";
 };
 
