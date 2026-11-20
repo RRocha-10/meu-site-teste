@@ -214,7 +214,9 @@ const NOME1 = "Deborah";
 const NOME2 = "Rafael";
 const DATA_CASAMENTO = "2018-11-19";   // AAAA-MM-DD
 const ASSINATURA = "Rafael";           // quem assina a carta
-// Fotos ficam na pasta "fotos". Opcional: fotos/capa.jpg vira o fundo do topo.
+// Onde estão as fotos: "" = na mesma pasta do index.html; "fotos/" = dentro de uma pasta chamada fotos.
+// Opcional: um arquivo capa.jpg vira o fundo do topo.
+const PASTA = "";
 const LEGENDA_POST = "Um pouco do nosso último ano 🤍";
 const FOTOS = [   // pos (opcional) ajusta o enquadramento da foto
   {arq: "foto1.jpg", alt: "Casal em frente à Casa Rosada, em Buenos Aires"},
@@ -283,10 +285,10 @@ tic(); setInterval(tic, 1000);
 // foto de capa (opcional)
 const capa = new Image();
 capa.onload = () => {
-  $("capa").style.setProperty("--capa", "url(fotos/capa.jpg)");
+  $("capa").style.setProperty("--capa", "url(" + PASTA + "capa.jpg)");
   $("capa").classList.add("com-foto");
 };
-capa.src = "fotos/capa.jpg";
+capa.src = PASTA + "capa.jpg";
 
 TEMPO.forEach(t => {
   const li = el("li", "", $("tempo"));
@@ -315,7 +317,7 @@ function pronto() {
 }
 FOTOS.forEach(f => {
   const img = new Image();
-  img.src = "fotos/" + f.arq;
+  img.src = PASTA + f.arq;
   img.alt = f.alt || "Foto do casal";
   img.draggable = false;
   if (f.pos) img.style.objectPosition = f.pos;
