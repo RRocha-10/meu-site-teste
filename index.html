@@ -174,7 +174,7 @@ footer p+p{margin-top:.8rem;opacity:.75}
     <article class="post">
       <header class="post-topo">
         <span class="avatar" aria-hidden="true"><i>∞</i></span>
-        <div><b id="post-nome"></b><small>oito anos juntos</small></div>
+        <div><b id="post-nome"></b><small id="post-local">oito anos juntos</small></div>
       </header>
       <div class="palco">
         <div class="slides" id="slides" tabindex="0" aria-label="Fotos do nosso ano. Deslize para o lado."></div>
@@ -236,15 +236,15 @@ const COMENTARIOS = [   // exemplos: troque pelo que quiser, ou deixe a lista va
   {quem: NOME1, texto: "Te amo 🤍"},
   {quem: NOME2, texto: "Te amo mais ∞"}
 ];
-const FOTOS = [   // pos (opcional) ajusta o enquadramento da foto
-  {arq: "foto1.jpg", alt: "Casal em frente à Casa Rosada, em Buenos Aires"},
-  {arq: "foto2.jpg", alt: "Selfie no estádio, antes do jogo", pos: "38% 50%"},
-  {arq: "foto3.jpg", alt: "Casal numa praia de rochas ao entardecer"},
-  {arq: "foto4.jpg", alt: "Casal de óculos escuros em frente a um jardim"},
-  {arq: "foto5.jpg", alt: "Casal à beira de um rio"},
-  {arq: "foto6.jpg", alt: "Selfie dentro de um bar com luz baixa"},
-  {arq: "foto7.jpg", alt: "Foto na porta de um vagão de metrô antigo"},
-  {arq: "foto8.jpg", alt: "Selfie em uma fábrica"}
+const FOTOS = [   // local aparece no topo do post, como a localização no Instagram; pos (opcional) ajusta o enquadramento
+  {arq: "foto1.jpg", local: "Casa Rosada, Buenos Aires, Argentina", alt: "Casal em frente à Casa Rosada, em Buenos Aires"},
+  {arq: "foto2.jpg", local: "Bragança Paulista, SP", alt: "Selfie no estádio de futebol, em Bragança Paulista", pos: "38% 50%"},
+  {arq: "foto3.jpg", local: "João Pessoa, PB", alt: "Casal numa praia de rochas, em João Pessoa"},
+  {arq: "foto4.jpg", local: "Assembleia, Mairiporã, SP", alt: "Casal de óculos escuros na assembleia, em Mairiporã"},
+  {arq: "foto5.jpg", local: "Guararema, SP", alt: "Casal à beira de um rio, em Guararema"},
+  {arq: "foto6.jpg", local: "Bar JW Bradley, Buenos Aires", alt: "Selfie no bar JW Bradley, em Buenos Aires"},
+  {arq: "foto7.jpg", local: "Bar Uptown, Buenos Aires", alt: "Foto na porta de um vagão de metrô antigo, no bar Uptown"},
+  {arq: "foto8.jpg", local: "Betel, Cesário Lange, SP", alt: "Selfie no Betel, em Cesário Lange"}
 ];
 // Linha do tempo (opcional): enquanto estiver vazia, a seção fica escondida.
 // Para ativar, apague as barras // das linhas abaixo e troque os textos.
@@ -325,12 +325,17 @@ cur.append("Curtido por "); el("b", NOME1, cur); cur.append(" e "); el("b", NOME
 const leg = $("legenda");
 el("b", NOME1 + " & " + NOME2, leg); leg.append(" " + LEGENDA_POST);
 
+function atualizaLocal(i) {
+  const img = slides.children[i];
+  $("post-local").textContent = (img && img.dataset.local) || "oito anos juntos";
+}
 let faltam = FOTOS.length;
 function pronto() {
   if (--faltam) return;
   const n = slides.children.length;
   if (!n) { $("sec-fotos").hidden = true; return; }
   $("contagem").textContent = "1/" + n;
+  atualizaLocal(0);
   for (let i = 0; i < n; i++) el("span", "", pontos, i ? "" : "on");
 }
 FOTOS.forEach(f => {
@@ -338,6 +343,7 @@ FOTOS.forEach(f => {
   img.src = PASTA + f.arq;
   img.alt = f.alt || "Foto do casal";
   img.draggable = false;
+  img.dataset.local = f.local || "";
   if (f.pos) img.style.objectPosition = f.pos;
   img.onload = pronto;
   img.onerror = () => { img.remove(); pronto(); };   // some se o arquivo não existir
@@ -349,6 +355,7 @@ slides.addEventListener("scroll", () => {
   const i = Math.round(slides.scrollLeft / slides.clientWidth);
   [...pontos.children].forEach((d, k) => d.classList.toggle("on", k === i));
   $("contagem").textContent = (i + 1) + "/" + slides.children.length;
+  atualizaLocal(i);
 });
 $("ant").onclick = () => slides.scrollBy({left: -slides.clientWidth, behavior: "smooth"});
 $("prox").onclick = () => slides.scrollBy({left: slides.clientWidth, behavior: "smooth"});
