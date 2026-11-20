@@ -77,14 +77,20 @@ h2::after{content:"";display:block;height:16px;margin:.7rem auto 0;background:ur
 .pontos{display:flex;gap:.35rem;justify-content:center;padding:.8rem 0 .1rem}
 .pontos span{width:.42rem;height:.42rem;border-radius:50%;background:#d8c3bc}
 .pontos .on{background:var(--vinho)}
-.acoes{padding:.2rem .85rem 0}
-.cora{background:none;border:0;padding:.3rem;cursor:pointer;color:var(--tinta)}
-.cora svg{display:block;width:28px;height:28px;fill:none;stroke:currentColor;stroke-width:1.8;stroke-linejoin:round;transition:transform .2s}
+.acoes{display:flex;align-items:center;gap:.1rem;padding:.2rem .7rem 0}
+.acao{background:none;border:0;padding:.35rem;cursor:pointer;color:var(--tinta)}
+.acao svg{display:block;width:27px;height:27px;fill:none;stroke:currentColor;stroke-width:1.7;stroke-linejoin:round;stroke-linecap:round;transition:transform .2s}
+.acao:active svg{transform:scale(1.2)}
 .cora.on{color:#b84a5e}
-.cora.on svg{fill:currentColor}
-.cora:active svg{transform:scale(1.25)}
+.cora.on svg,.salvar.on svg{fill:currentColor}
+.salvar{margin-left:auto}
 .texto{padding:0 1rem 1.2rem;line-height:1.45}
 .texto p+p{margin-top:.3rem}
+.ver{background:none;border:0;padding:0;margin-top:.5rem;font:inherit;font-size:.98rem;color:var(--bronze);cursor:pointer}
+.coments{list-style:none;padding:0;margin-top:.4rem}
+.coments li+li{margin-top:.2rem}
+.aviso{position:absolute;left:50%;bottom:.9rem;translate:-50% 0;padding:.3rem .9rem;border-radius:999px;background:rgba(30,12,22,.8);color:#fff;font-size:.95rem;opacity:0;transition:opacity .25s;pointer-events:none;white-space:nowrap}
+.aviso.mostra{opacity:1}
 
 footer{background:var(--ameixa);color:#f3e4de;text-align:center;padding:4rem 1.5rem 3rem}
 footer .fecho{font:400 clamp(2.4rem,8vw,3.6rem)/1.1 "Pinyon Script",cursive;color:var(--rose)}
@@ -176,12 +182,20 @@ footer p+p{margin-top:.8rem;opacity:.75}
         <button class="seta" id="ant" type="button" aria-label="Foto anterior">‹</button>
         <button class="seta" id="prox" type="button" aria-label="Próxima foto">›</button>
         <svg class="pop" id="pop" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 21C5 16.5 2.5 12.8 2.5 9A5 5 0 0 1 12 6.8 5 5 0 0 1 21.5 9c0 3.8-2.5 7.5-9.5 12z"/></svg>
+        <span class="aviso" id="aviso" role="status"></span>
       </div>
       <div class="pontos" id="pontos"></div>
       <div class="acoes">
-        <button class="cora" id="cora" type="button" aria-label="Curtir" aria-pressed="false"><svg viewBox="0 0 24 24"><path d="M12 21C5 16.5 2.5 12.8 2.5 9A5 5 0 0 1 12 6.8 5 5 0 0 1 21.5 9c0 3.8-2.5 7.5-9.5 12z"/></svg></button>
+        <button class="acao cora" id="cora" type="button" aria-label="Curtir" aria-pressed="false"><svg viewBox="0 0 24 24"><path d="M12 21C5 16.5 2.5 12.8 2.5 9A5 5 0 0 1 12 6.8 5 5 0 0 1 21.5 9c0 3.8-2.5 7.5-9.5 12z"/></svg></button>
+        <button class="acao" id="comentar" type="button" aria-label="Comentários" aria-expanded="false"><svg viewBox="0 0 24 24"><path d="M20.5 11.5c0 4.1-3.8 7.5-8.5 7.5-1.1 0-2.2-.2-3.1-.5L4 20l1.4-4C4.2 14.7 3.5 13.2 3.5 11.5 3.5 7.4 7.3 4 12 4s8.5 3.4 8.5 7.5z"/></svg></button>
+        <button class="acao" id="compartilhar" type="button" aria-label="Compartilhar"><svg viewBox="0 0 24 24"><path d="M21 3L3 10.5l7 2.5 2.5 7zM10 13L21 3"/></svg></button>
+        <button class="acao salvar" id="salvar" type="button" aria-label="Guardar" aria-pressed="false"><svg viewBox="0 0 24 24"><path d="M6 3h12v18l-6-4.5L6 21z"/></svg></button>
       </div>
-      <div class="texto"><p id="curtido"></p><p id="legenda"></p></div>
+      <div class="texto">
+        <p id="curtido"></p><p id="legenda"></p>
+        <button class="ver" id="ver" type="button" aria-expanded="false"></button>
+        <ul class="coments" id="coments" hidden></ul>
+      </div>
     </article>
   </div>
 </section>
@@ -218,6 +232,10 @@ const ASSINATURA = "Rafael";           // quem assina a carta
 // Opcional: um arquivo capa.jpg vira o fundo do topo.
 const PASTA = "";
 const LEGENDA_POST = "Um pouco do nosso último ano 🤍";
+const COMENTARIOS = [   // exemplos: troque pelo que quiser, ou deixe a lista vazia para esconder
+  {quem: NOME1, texto: "Te amo 🤍"},
+  {quem: NOME2, texto: "Te amo mais ∞"}
+];
 const FOTOS = [   // pos (opcional) ajusta o enquadramento da foto
   {arq: "foto1.jpg", alt: "Casal em frente à Casa Rosada, em Buenos Aires"},
   {arq: "foto2.jpg", alt: "Selfie no estádio, antes do jogo", pos: "38% 50%"},
@@ -344,6 +362,50 @@ cora.onclick = () => curtir(false);
 slides.ondblclick = () => {         // toque duplo na foto também curte
   curtir(true);
   pop.classList.remove("vai"); void pop.getBoundingClientRect(); pop.classList.add("vai");
+};
+
+// comentários, compartilhar e guardar
+const aviso = $("aviso");
+function dizer(t) {
+  aviso.textContent = t;
+  aviso.classList.add("mostra");
+  clearTimeout(dizer.id);
+  dizer.id = setTimeout(() => aviso.classList.remove("mostra"), 2200);
+}
+const lista = $("coments"), ver = $("ver"), btnC = $("comentar");
+const rotulo = n => n === 1 ? "Ver o comentário" : "Ver todos os " + n + " comentários";
+COMENTARIOS.forEach(c => {
+  const li = el("li", "", lista);
+  el("b", c.quem, li);
+  li.append(" " + c.texto);
+});
+function alternar() {
+  const abrir = lista.hidden;
+  lista.hidden = !abrir;
+  ver.textContent = abrir ? "Ocultar comentários" : rotulo(COMENTARIOS.length);
+  ver.setAttribute("aria-expanded", abrir);
+  btnC.setAttribute("aria-expanded", abrir);
+}
+if (COMENTARIOS.length) {
+  ver.textContent = rotulo(COMENTARIOS.length);
+  ver.onclick = alternar;
+  btnC.onclick = alternar;
+} else {
+  ver.hidden = true;
+  btnC.hidden = true;
+}
+$("compartilhar").onclick = async () => {
+  try {
+    if (navigator.share) await navigator.share({title: document.title, url: location.href});
+    else { await navigator.clipboard.writeText(location.href); dizer("Link copiado"); }
+  } catch (e) {
+    if (e.name !== "AbortError") dizer("Copie o link na barra do navegador");
+  }
+};
+$("salvar").onclick = () => {
+  const b = $("salvar"), on = b.classList.toggle("on");
+  b.setAttribute("aria-pressed", on);
+  if (on) dizer("Guardado para sempre 🤍");
 };
 
 // 8 até o infinito
